@@ -43,8 +43,13 @@ const SocialFeed = () => {
 
 const fetchPosts = async () => {
   try {
-    const response = await fetch('/api/near/index?action=post&key=main&limit=1000&accountId=' + ACCOUNT_ID + '&order=desc');
-    const indexResult = await response.json();
+    const indexResult = await socialClient.index({
+      action: 'post',
+      key: 'main',
+      limit: BATCH_SIZE,
+      accountId: ACCOUNT_ID,
+      order: 'desc',
+    });
 
     if (!indexResult?.length) return;
 
@@ -53,8 +58,10 @@ const fetchPosts = async () => {
         if (seenIds.has(item.blockHeight)) return null;
         seenIds.add(item.blockHeight);
 
-        const postResponse = await fetch(`/api/near/get?keys=${ACCOUNT_ID}/post/main&blockHeight=${item.blockHeight}`);
-        const result = await postResponse.json();
+        const result = await socialClient.get({
+          keys: [`${ACCOUNT_ID}/post/main`],
+          blockHeight: item.blockHeight,
+        });
 
         try {
           const postContent = result[ACCOUNT_ID]?.post?.main;
@@ -67,7 +74,7 @@ const fetchPosts = async () => {
             content: parsedContent.text,
             blockHeight: item.blockHeight,
             imageIPFSHash: parsedContent.image?.ipfs_cid || null,
-            timestamp: time
+            timestamp: time,
           };
         } catch (e) {
           console.error('Error parsing post:', e);
@@ -83,6 +90,7 @@ const fetchPosts = async () => {
     setLoading(false);
   }
 };
+
 
   useEffect(() => {
     fetchPosts();
