@@ -3,11 +3,11 @@ const nextConfig = {
   async rewrites() {
     return [
       {
-        source: '/api/:path*',
-        destination: 'https://api.near.social/:path*'
-      }
-    ]
-  }
-}
+        source: '/api/near/:path*',
+        destination: 'https://api.near.social/:path*',
+      },
+    ];
+  },
+};
 
-module.exports = nextConfig
+module.exports = nextConfig;
