@@ -71,10 +71,6 @@ body {
   font-size: 0.9rem;
 }
 
-.prose a {
-  color: var(--hover-color);
-}
-
 .image-container {
   max-width: 100%;
   overflow: hidden;
