@@ -71,9 +71,9 @@ body {
   font-size: 0.9rem;
 }
 
-.prose {
-  color: var(--text-color);
-  line-height: 1.6;
+.prose a {
+  color: var(--accent-color) !important;
+  text-decoration: underline;
 }
 
 .image-container {
