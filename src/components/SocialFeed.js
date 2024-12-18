@@ -41,55 +41,48 @@ const SocialFeed = () => {
     network: 'mainnet'
   });
 
-  const fetchPosts = async () => {
-    try {
-      const indexResult = await socialClient.index({
-        action: 'post',
-        key: 'main',
-        limit: BATCH_SIZE,
-        accountId: ACCOUNT_ID,
-        order: 'desc'
-      });
+const fetchPosts = async () => {
+  try {
+    const response = await fetch('/api/near/index?action=post&key=main&limit=1000&accountId=' + ACCOUNT_ID + '&order=desc');
+    const indexResult = await response.json();
 
-      if (!indexResult?.length) return;
+    if (!indexResult?.length) return;
 
-      const postsData = await Promise.all(
-        indexResult.map(async (item) => {
-          if (seenIds.has(item.blockHeight)) return null;
-          seenIds.add(item.blockHeight);
+    const postsData = await Promise.all(
+      indexResult.map(async (item) => {
+        if (seenIds.has(item.blockHeight)) return null;
+        seenIds.add(item.blockHeight);
 
-          const result = await socialClient.get({
-            keys: [`${ACCOUNT_ID}/post/main`],
-            blockHeight: item.blockHeight
-          });
+        const postResponse = await fetch(`/api/near/get?keys=${ACCOUNT_ID}/post/main&blockHeight=${item.blockHeight}`);
+        const result = await postResponse.json();
 
-          try {
-            const postContent = result[ACCOUNT_ID]?.post?.main;
-            const parsedContent = JSON.parse(postContent);
-            const time = await fetchTimeByBlockHeight(Number(item.blockHeight));
+        try {
+          const postContent = result[ACCOUNT_ID]?.post?.main;
+          const parsedContent = JSON.parse(postContent);
+          const time = await fetchTimeByBlockHeight(Number(item.blockHeight));
 
-            return {
-              id: `${item.blockHeight}-${Date.now()}`,
-              accountId: ACCOUNT_ID,
-              content: parsedContent.text,
-              blockHeight: item.blockHeight,
-              imageIPFSHash: parsedContent.image?.ipfs_cid || null,
-              timestamp: time
-            };
-          } catch (e) {
-            console.error('Error parsing post:', e);
-            return null;
-          }
-        })
-      );
+          return {
+            id: `${item.blockHeight}-${Date.now()}`,
+            accountId: ACCOUNT_ID,
+            content: parsedContent.text,
+            blockHeight: item.blockHeight,
+            imageIPFSHash: parsedContent.image?.ipfs_cid || null,
+            timestamp: time
+          };
+        } catch (e) {
+          console.error('Error parsing post:', e);
+          return null;
+        }
+      })
+    );
 
-      setPosts(postsData.filter(Boolean));
-    } catch (err) {
-      setError(err.message);
-    } finally {
-      setLoading(false);
-    }
-  };
+    setPosts(postsData.filter(Boolean));
+  } catch (err) {
+    setError(err.message);
+  } finally {
+    setLoading(false);
+  }
+};
 
   useEffect(() => {
     fetchPosts();
