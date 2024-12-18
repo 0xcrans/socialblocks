@@ -161,19 +161,23 @@ body {
 
 .prose {
   color: var(--text-color); /* Biały tekst na każdym urządzeniu */
+  word-break: break-word;
 }
 
 .prose a {
   color: var(--accent-color); /* Różowe linki */
+  word-break: break-word;
 }
 
 @media (max-width: 768px) {
   .prose {
     color: var(--text-color); /* Dodatkowo na telefonach */
+    word-break: break-word;
   }
 
   .prose a {
     color: var(--accent-color);
+    word-break: break-word;
   }
   
   .root-button {
