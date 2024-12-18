@@ -72,8 +72,7 @@ body {
 }
 
 .prose a {
-  color: var(--accent-color);
-  text-decoration: none;
+  color: var(--hover-color);
 }
 
 .image-container {
