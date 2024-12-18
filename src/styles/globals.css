@@ -72,8 +72,8 @@ body {
 }
 
 .prose a {
-  color: var(--accent-color) !important;
-  text-decoration: underline;
+  color: var(--accent-color);
+  text-decoration: none;
 }
 
 .image-container {
