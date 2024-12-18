@@ -159,14 +159,23 @@ body {
   box-shadow: 0 0 10px var(--accent-color);
 }
 
+.prose {
+  color: var(--text-color); /* Biały tekst na każdym urządzeniu */
+}
+
+.prose a {
+  color: var(--accent-color); /* Różowe linki */
+}
+
 @media (max-width: 768px) {
-  .max-w-3xl {
-    padding: 1rem;
-    margin: 0;
-    border-radius: 0;
-    min-height: 100vh;
+  .prose {
+    color: var(--text-color); /* Dodatkowo na telefonach */
   }
 
+  .prose a {
+    color: var(--accent-color);
+  }
+  
   .root-button {
     top: 10px; /* Adjusted position */
     right: 10px;
@@ -186,17 +195,6 @@ body {
     font-size: 1.2rem;
     padding: 0 25px;
   }
-
-.prose {
-  color: var(--text-color);
-  line-height: 1.6;
-  word-break: break-word;  /* For long links */
-}
-  .prose a {
-  color: var(--accent-color);
-  text-decoration: underline;
-  word-break: break-word;
-}
 
   .header {
     margin-bottom: 2rem;
