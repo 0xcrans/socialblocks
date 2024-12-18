@@ -10,7 +10,6 @@ const BATCH_SIZE = 1000;
 const LoadingSpinner = () => (
   <div className="text-center py-6">
     <div className="loading-spinner mx-auto"></div>
-    <p className="mt-2 text-pink-500">Loading...</p>
   </div>
 );
 
