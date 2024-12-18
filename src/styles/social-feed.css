@@ -1,0 +1,119 @@
+:root {
+    --primary-bg: rgba(18, 18, 18, 0.8);
+    --secondary-bg: rgba(26, 26, 26, 0.8);
+    --text-color: #ffffff;
+    --accent-color: #ff69b4;
+    --hover-color: #cccccc;
+  }
+  
+  .min-h-screen {
+    background: url('https://bafybeib2qommts7fwlnnnxmp2acnjm7gj32fsy4kxybvicbbr74eeea77q.ipfs.w3s.link/index.gif') no-repeat center center fixed;
+    background-size: cover;
+    min-height: 100vh;
+    position: relative;
+  }
+  
+  .min-h-screen::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 255, 0.3);
+    z-index: 0;
+  }
+  
+  .max-w-3xl {
+    position: relative;
+    z-index: 1;
+    background: rgba(0, 0, 0, 0.6);
+    border-radius: 15px;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 2rem;
+  }
+  
+  .post-container {
+    background: rgba(0, 0, 0, 0.7);
+    border: 1px solid var(--accent-color);
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 20px;
+    transition: box-shadow 0.3s ease;
+  }
+  
+  .post-container:hover {
+    box-shadow: 0 0 15px rgba(255, 105, 180, 0.5);
+  }
+  
+  .timestamp {
+    color: var(--hover-color);
+    font-size: 0.9rem;
+    text-align: right;
+    margin-bottom: 1rem;
+  }
+  
+  .prose {
+    color: var(--text-color);
+    line-height: 1.6;
+  }
+  
+  .prose a {
+    color: #63b3ed;
+    text-decoration: underline;
+    transition: color 0.3s;
+  }
+  
+  .prose a:hover {
+    color: #4299e1;
+  }
+  
+  .prose img {
+    max-height: 24rem;
+    width: auto;
+    margin: 1rem auto;
+    border-radius: 0.5rem;
+    transition: transform 0.3s ease;
+  }
+  
+  .prose img:hover {
+    transform: scale(1.02);
+  }
+  
+  .loading-spinner {
+    border: 4px solid rgba(255, 105, 180, 0.3);
+    border-top: 4px solid var(--accent-color);
+    border-radius: 50%;
+    width: 2rem;
+    height: 2rem;
+    animation: spin 1s linear infinite;
+  }
+  
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+  
+  .header {
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+  
+  .logo {
+    width: 4rem;
+    height: 4rem;
+    margin: 0 auto 1rem;
+  }
+  
+  .title {
+    color: var(--accent-color);
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+  }
+  
+  .subtitle {
+    color: var(--hover-color);
+    font-size: 1rem;
+  }
