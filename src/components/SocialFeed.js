@@ -15,7 +15,7 @@ const LoadingSpinner = () => (
 
 const Header = () => (
   <div className="header">
-    <h1 className="title">Wrapped thoughts into Social Blocks</h1>
+    <h1 className="title">Social Blocks</h1>
     <button onClick={() => window.location.href = 'https://crans.xyz'} className="root-button">
     🌐
     </button>
