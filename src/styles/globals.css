@@ -65,15 +65,20 @@ body {
   transition: box-shadow 0.3s ease;
 }
 
+/* Updated post-header structure */
 .post-header {
   display: flex;
-  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
   margin-bottom: 1rem;
   position: relative;
+  flex-wrap: wrap;
 }
 
-.post-header .flex {
-  width: 100%;
+.post-info {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
 }
 
 .account-id {
@@ -198,7 +203,7 @@ body {
   box-shadow: 0 0 10px var(--accent-color);
 }
 
-/* Share button styles */
+/* Updated share button styles */
 .share-button {
   background: transparent;
   color: var(--accent-color);
@@ -208,9 +213,7 @@ body {
   font-size: 0.8rem;
   cursor: pointer;
   transition: all 0.2s ease;
-  position: absolute;
-  top: 0;
-  right: 0;
+  position: static; /* Remove absolute positioning */
 }
 
 .share-button:hover {
@@ -267,11 +270,6 @@ body {
   align-items: center;
 }
 
-.post-info {
-  display: flex;
-  align-items: center;
-}
-
 .post-date {
   color: var(--hover-color);
   font-size: 0.9rem;
@@ -280,4 +278,23 @@ body {
 
 .ml-2 {
   margin-left: 0.5rem;
+}
+
+/* Mobile responsive enhancements */
+@media screen and (max-width: 768px) {
+  .post-header {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+  }
+  
+  .post-info {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .post-date {
+    margin-left: 0;
+    margin-top: 4px;
+  }
 }
