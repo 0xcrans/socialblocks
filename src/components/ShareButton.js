@@ -21,4 +21,4 @@ const ShareButton = ({ blockHeight }) => {
   );
 };
 
-export default ShareButton; 
+export default ShareButton;
