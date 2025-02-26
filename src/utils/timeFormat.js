@@ -1,19 +1,35 @@
+// Simple cache to store previous time lookups
+const timeCache = new Map();
+
 export const fetchTimeByBlockHeight = async (blockHeight) => {
-    if (!blockHeight) return "";
-    try {
-      const res = await fetch(`https://api.near.social/time?blockHeight=${blockHeight}`);
-      if (!res.ok) return "";
-      const timeMs = parseFloat(await res.text());
-      const date = new Date(timeMs);
-      const dateNow = new Date();
-      const diffSec = dateNow.getTime() - timeMs;
-      
-      if (diffSec < 60000) return `${(diffSec / 1000) | 0}s`;
-      if (diffSec < 3600000) return `${(diffSec / 60000) | 0}m`;
-      if (diffSec < 86400000) return `${(diffSec / 3600000) | 0}h`;
-      return date.toLocaleString();
-    } catch (error) {
-      console.error("Error fetching time:", error);
-      return "";
-    }
-  };
+  if (!blockHeight) return "";
+  
+  // Check if we already have this blockHeight in the cache
+  if (timeCache.has(blockHeight)) {
+    return timeCache.get(blockHeight);
+  }
+  
+  try {
+    const res = await fetch(`https://api.near.social/time?blockHeight=${blockHeight}`);
+    if (!res.ok) return "";
+    const timeMs = parseFloat(await res.text());
+    const date = new Date(timeMs);
+    
+    // Format the date to include month, day, year, hour and minute
+    const formattedDate = date.toLocaleDateString('en-US', { 
+      month: 'short', 
+      day: 'numeric', 
+      year: 'numeric',
+      hour: '2-digit',
+      minute: '2-digit'
+    });
+    
+    // Store in cache
+    timeCache.set(blockHeight, formattedDate);
+    
+    return formattedDate;
+  } catch (error) {
+    console.error("Error fetching time:", error);
+    return "";
+  }
+};
