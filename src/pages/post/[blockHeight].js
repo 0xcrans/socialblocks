@@ -7,12 +7,13 @@ import Link from 'next/link';
 
 const ACCOUNT_ID = 'crans.near';
 
-const PostHeader = ({ accountId, timestamp }) => (
+const SinglePostHeader = ({ accountId, timestamp, blockHeight }) => (
   <div className="post-header">
     <div className="post-info">
       <span className="account-id">{accountId}</span>
-      <span className="post-date ml-2">{timestamp}</span>
+      <span className="post-date">{timestamp}</span>
     </div>
+    {blockHeight && <ShareButton blockHeight={blockHeight} />}
   </div>
 );
 
