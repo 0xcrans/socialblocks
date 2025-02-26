@@ -78,7 +78,7 @@ const SinglePost = () => {
 
   if (loading) {
     return (
-      <div className="min-h-screen">
+      <div className="post-page-background">
         <div className="max-w-3xl mx-auto p-8">
           <div className="text-center py-6">
             <div className="loading-spinner mx-auto"></div>
@@ -91,7 +91,7 @@ const SinglePost = () => {
 
   if (error) {
     return (
-      <div className="min-h-screen">
+      <div className="post-page-background">
         <div className="max-w-3xl mx-auto p-8">
           <div className="text-red-500 text-center p-4">{error}</div>
           <div className="text-center mt-4">
@@ -106,7 +106,7 @@ const SinglePost = () => {
 
   if (!post) {
     return (
-      <div className="min-h-screen">
+      <div className="post-page-background">
         <div className="max-w-3xl mx-auto p-8">
           <div className="text-red-500 text-center p-4">Post does not exist</div>
           <div className="text-center mt-4">
@@ -120,7 +120,7 @@ const SinglePost = () => {
   }
 
   return (
-    <div className="min-h-screen">
+    <div className="post-page post-page-background">
       <div className="max-w-3xl mx-auto p-8">
         <div className="header">
           <h1 className="title">Social Block</h1>
@@ -186,4 +186,4 @@ const SinglePost = () => {
   );
 };
 
-export default SinglePost; 
+export default SinglePost;
