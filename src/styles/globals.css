@@ -45,26 +45,28 @@ body {
   z-index: 0;
 }
 
-/* Desktop-specific fix for scrolling background on single post pages */
+/* Desktop-specific fix for single post pages - no background image */
 @media screen and (min-width: 1024px) {
   .post-page-background {
-    background: url('https://bafybeib2qommts7fwlnnnxmp2acnjm7gj32fsy4kxybvicbbr74eeea77q.ipfs.w3s.link/hot16.gif') no-repeat center top;
-    background-size: cover;
-    background-attachment: scroll !important; /* Force scroll instead of fixed */
+    background: #000; /* Solid black background instead of image */
     min-height: 250vh;
     position: relative;
   }
   
   .post-page-background::before {
-    content: "";
-    position: absolute !important; /* Force absolute instead of fixed */
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 255, 0.3);
-    z-index: 0;
+    content: none; /* Remove the blue overlay */
   }
+}
+
+/* Add this for mobile version too */
+.post-page-background {
+  background: #000; /* Solid black background */
+  min-height: 100vh;
+  position: relative;
+}
+
+.post-page-background::before {
+  content: none; /* Remove the blue overlay */
 }
 
 .max-w-3xl {
