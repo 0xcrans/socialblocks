@@ -28,7 +28,7 @@ const PostHeader = ({ accountId, timestamp, blockHeight }) => (
   <div className="post-header">
     <div className="post-info">
       <span className="account-id">{accountId}</span>
-      <span className="post-date ml-2">{timestamp}</span>
+      <span className="post-date">{timestamp}</span>
     </div>
     <ShareButton blockHeight={blockHeight} />
   </div>
