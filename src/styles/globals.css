@@ -89,9 +89,12 @@ body {
   transition: box-shadow 0.3s ease;
 }
 
+/* UPDATED: Changed post-header to row layout with space-between */
 .post-header {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
   margin-bottom: 1rem;
   position: relative;
 }
@@ -222,7 +225,7 @@ body {
   box-shadow: 0 0 10px var(--accent-color);
 }
 
-/* Share button styles */
+/* UPDATED: Share button styles - removed absolute positioning */
 .share-button {
   background: transparent;
   color: var(--accent-color);
@@ -232,9 +235,6 @@ body {
   font-size: 0.8rem;
   cursor: pointer;
   transition: all 0.2s ease;
-  position: absolute;
-  top: 0;
-  right: 0;
 }
 
 .share-button:hover {
@@ -304,4 +304,16 @@ body {
 
 .ml-2 {
   margin-left: 0.5rem;
+}
+
+/* ADDED: Mobile-specific adjustments for post info and share button */
+@media screen and (max-width: 480px) {
+  .post-info {
+    max-width: 70%; /* Limit width to leave space for button */
+  }
+  
+  .share-button {
+    padding: 3px 6px;
+    font-size: 0.75rem;
+  }
 }
